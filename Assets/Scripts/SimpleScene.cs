@@ -1,16 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Car;
 
+/*
+ * \brief Manager for SimpleScene.
+ */
 public class SimpleScene : MonoBehaviour
 {
     public Vehicle car;
     public Speedometer speedometer;
+    public InputManager inputManager;
     
     void Update()
     {
-        Vector3 velocity = car.GetVelocity();
-        speedometer.SetVelocity(velocity.z);
+        float speed = car.GetSpeed();
+        speedometer.SetVelocity( speed );
+        speedometer.Reversing = inputManager.isReversing();
     }
 }

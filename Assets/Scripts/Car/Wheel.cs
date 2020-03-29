@@ -1,9 +1,12 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Car
 {
-
+    /*
+     * \brief Wheel controller.
+     * Place this component on a game object that contains a WheelCollider.
+     * The mesh must be a child of this game object.
+     */
     [RequireComponent(typeof(WheelCollider))]
     public class Wheel : MonoBehaviour
     {
@@ -15,12 +18,15 @@ namespace Car
 
         // ********************************************************************
         // ********************************************************************
-        public float MaxTorque { get; set; } = 4000;
-        public float MaxSteer { get; set; } = 35;
-        public float MaxBrake { get; set; } = 2000;
-        public Rigidbody CarRigidBody { get; set; }
-        public bool Steerable { get; set; } = false;
+        public float MaxTorque { get; set; } = 4000;    /*!< Maximum torque the wheel's motor can provide, in Nm. */
+        public float MaxSteer { get; set; } = 35;       /*!< Maximum angle the wheel can turn, in degrees. */
+        public float MaxBrake { get; set; } = 2000;     /*!< Maximum brake torque for the wheel, in Nm. */
+        public Rigidbody CarRigidBody { get; set; }     /*!< A reference to the vehicle's rigid body component. */
+        public bool Steerable { get; set; } = false;    /*!< Can this wheel turn? */
 
+        /*
+         * \brief Get/Set the wheel's current torque value, in range [-1, 1].
+         */
         public float Torque
         {
             get { return torque; }
@@ -33,6 +39,9 @@ namespace Car
             }
         }
 
+        /*
+         * \brief Get/Set the wheel's steering angle, in range [-1, 1].
+         */
         public float Steer
         {
             get { return steer; }
@@ -45,6 +54,9 @@ namespace Car
             }
         }
 
+        /*
+         * \brief Get/Set the wheel's brake torque, in range [-1, 1].
+         */
         public float Brake
         {
             get { return brake; }
@@ -59,9 +71,6 @@ namespace Car
 
         // ********************************************************************
         // ********************************************************************
-        /**
-         * \brief Create a wheel controller.
-         */
         private void Start()
         {
             wCollider = GetComponent<WheelCollider>();
