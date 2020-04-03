@@ -28,6 +28,7 @@ namespace Car
         protected abstract void ReadInput();
         public abstract bool isReversing();
 
+        // This function is automatically called when the simulation starts
         private void Start()
         {
             Assert.IsNotNull(car, "A vehicle must be defined");
